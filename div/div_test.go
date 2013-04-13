@@ -18,7 +18,7 @@ func tSub(inStr, outStr string, t *testing.T) {
 	if err != nil {
 		panic("couldn't parse out")
 	}
-	mid := f(in)
+	mid := f(&in)
 	if mid.Cmp(&out) != 0 {
 		t.Errorf("Sub11(%v) = %v, wanted %v", in, mid, out)
 	}
@@ -63,41 +63,45 @@ func tDig(inStr string, out bool, t *testing.T) {
 	}
 }
 
-func TestDig_1(t *testing.T) {
+func TestDig1(t *testing.T) {
 	tDig("100", false, t)
 }
-func TestDig_2(t *testing.T) {
+func TestDig2(t *testing.T) {
 	tDig("99", true, t)
 }
-func TestDig_3(t *testing.T) {
+func TestDig3(t *testing.T) {
 	tDig("10", true, t)
 }
-func TestDig_4(t *testing.T) {
+func TestDig4(t *testing.T) {
 	tDig("09", false, t)
 }
 
 func tCal(inStr string, out bool, t *testing.T) {
-	f := Calc
+    f := Calc
 	var in big.Int
 	_, err := fmt.Sscan(inStr, &in)
 	if err != nil {
 		panic("couldn't parse in")
 	}
-	ans := f(in, false)
+    ori := in
+	ans := f(&in)
 	if ans != out {
-		t.Errorf("Calc(%v) = %v, wanted %v", in, ans, out)
+		t.Errorf("Calc(%v) = %v, wanted %v", ori, ans, out)
 	}
 }
 
 func TestCalc1(t *testing.T) {
-    tCal("121", true, t)
+    tCal("11", false, t)
 }
 func TestCalc2(t *testing.T) {
-    tCal("13", false, t)
+    tCal("111", true, t)
 }
 func TestCalc3(t *testing.T) {
-    tCal("12345678901226", true, t)
+    tCal("111111", true, t)
 }
 func TestCalc4(t *testing.T) {
-    tCal("1234567890122l", false, t)
+    tCal("99", false, t)
+}
+func TestCalc5(t *testing.T) {
+    tCal("999", true, t)
 }
