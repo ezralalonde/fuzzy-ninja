@@ -77,13 +77,13 @@ func TestDig4(t *testing.T) {
 }
 
 func tCal(inStr string, out bool, t *testing.T) {
-    f := Calc
+	f := Calc
 	var in big.Int
 	_, err := fmt.Sscan(inStr, &in)
 	if err != nil {
 		panic("couldn't parse in")
 	}
-    ori := in
+	ori := in
 	ans := f(&in)
 	if ans != out {
 		t.Errorf("Calc(%v) = %v, wanted %v", ori, ans, out)
@@ -91,17 +91,17 @@ func tCal(inStr string, out bool, t *testing.T) {
 }
 
 func TestCalc1(t *testing.T) {
-    tCal("11", false, t)
+	tCal("11", false, t)
 }
 func TestCalc2(t *testing.T) {
-    tCal("111", true, t)
+	tCal("111", true, t)
 }
 func TestCalc3(t *testing.T) {
-    tCal("111111", true, t)
+	tCal("111111", true, t)
 }
 func TestCalc4(t *testing.T) {
-    tCal("99", false, t)
+	tCal("99", false, t)
 }
 func TestCalc5(t *testing.T) {
-    tCal("999", true, t)
+	tCal("999", true, t)
 }

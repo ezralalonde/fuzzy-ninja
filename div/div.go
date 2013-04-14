@@ -18,9 +18,9 @@ func IsTwoDigits(xx big.Int) bool {
 }
 
 func Calc(xx *big.Int) bool {
-    if IsTwoDigits(*xx) {
-        return false
-    } else {
+	if IsTwoDigits(*xx) {
+		return false
+	} else {
 		*xx = Sub11(xx)
 		return true
 	}
@@ -28,5 +28,5 @@ func Calc(xx *big.Int) bool {
 }
 
 func IsDivisibleBy11(xx big.Int) bool {
-    return big.NewInt(0).Mod(&xx, big.NewInt(11)).Cmp(big.NewInt(0)) == 0
+	return big.NewInt(0).Mod(&xx, big.NewInt(11)).Cmp(big.NewInt(0)) == 0
 }
